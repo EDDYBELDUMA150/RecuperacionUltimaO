@@ -5,7 +5,9 @@
 package com.eddybelduma.leccion.Services;
 
 import com.eddybelduma.leccion.Model.Compras;
+import com.eddybelduma.leccion.Model.Productos;
 import com.eddybelduma.leccion.Repository.ComprasRepository;
+import com.eddybelduma.leccion.Repository.ProductosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -15,14 +17,14 @@ import org.springframework.stereotype.Service;
  * @author OWNER
  */
 @Service
-public class ProductosServiceImpl extends GenericServiceImpl<Compras, Integer> implements GenericService<Compras, Integer>{
+public class ProductosServiceImpl extends GenericServiceImpl<Productos, Integer> implements GenericService<Productos, Integer>{
 
     @Autowired
-    ComprasRepository comprRepository;
+    ProductosRepository prodRepository;
     
     @Override
-    public CrudRepository<Compras, Integer> getDao() {
-        return comprRepository;
+    public CrudRepository<Productos, Integer> getDao() {
+        return prodRepository;
     }
     
 }

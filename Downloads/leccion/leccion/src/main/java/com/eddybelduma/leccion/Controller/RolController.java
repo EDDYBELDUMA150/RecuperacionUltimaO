@@ -31,18 +31,18 @@ public class RolController {
 
     @Operation(summary = "Se obtiene la lista de Usuarios")
     @GetMapping("/listar")
-    public ResponseEntity<List<Roles>> listaUsuarios() {
+    public ResponseEntity<List<Roles>> listaRol() {
         return new ResponseEntity<>(rolService.findByAll(), HttpStatus.OK);
     }
 
     @Operation(summary = "Debe enviar los campos del Usuario")
     @PostMapping("/crear")
-    public ResponseEntity<Roles> crearUsuario(@RequestBody Roles u) {
+    public ResponseEntity<Roles> crearRol(@RequestBody Roles u) {
         return new ResponseEntity<>(rolService.save(u), HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<Roles> actualizarUsuario(@PathVariable Integer id, @RequestBody Roles u) {
+    public ResponseEntity<Roles> actualizarRol(@PathVariable Integer id, @RequestBody Roles u) {
         Roles usuario = rolService.findById(id);
         if (usuario != null) {
             try {
@@ -59,7 +59,7 @@ public class RolController {
         }
     }
 
-    public ResponseEntity<Roles> elimiarUsuario(@PathVariable Integer id) {
+    public ResponseEntity<Roles> elimiarRol(@PathVariable Integer id) {
         rolService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

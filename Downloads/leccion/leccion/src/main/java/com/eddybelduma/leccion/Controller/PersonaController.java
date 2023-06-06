@@ -35,7 +35,7 @@ public class PersonaController {
     }
     
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<Persona> actualizarUsuario(@PathVariable Integer id, @RequestBody Persona u) {
+    public ResponseEntity<Persona> actualizarPersonas(@PathVariable Integer id, @RequestBody Persona u) {
         Persona persona = personaService.findById(id);
         if (persona != null) {
             try {
@@ -57,7 +57,7 @@ public class PersonaController {
         }
     }
 
-    public ResponseEntity<Persona> elimiarUsuario(@PathVariable Integer id) {
+    public ResponseEntity<Persona> elimiarPersonas(@PathVariable Integer id) {
         personaService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

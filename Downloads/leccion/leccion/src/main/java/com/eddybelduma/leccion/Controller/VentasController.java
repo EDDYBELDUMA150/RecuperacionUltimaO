@@ -31,18 +31,18 @@ public class VentasController {
 
     @Operation(summary = "Se obtiene la lista de Usuarios")
     @GetMapping("/listar")
-    public ResponseEntity<List<Ventas>> listaUsuarios() {
+    public ResponseEntity<List<Ventas>> listaVentas() {
         return new ResponseEntity<>(ventService.findByAll(), HttpStatus.OK);
     }
 
     @Operation(summary = "Debe enviar los campos del Usuario")
     @PostMapping("/crear")
-    public ResponseEntity<Ventas> crearUsuario(@RequestBody Ventas u) {
+    public ResponseEntity<Ventas> crearVentas(@RequestBody Ventas u) {
         return new ResponseEntity<>(ventService.save(u), HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<Ventas> actualizarUsuario(@PathVariable Integer id, @RequestBody Ventas u) {
+    public ResponseEntity<Ventas> actualizarVentas(@PathVariable Integer id, @RequestBody Ventas u) {
         Ventas ventas = ventService.findById(id);
         if (ventas != null) {
             try {
@@ -61,7 +61,7 @@ public class VentasController {
         }
     }
 
-    public ResponseEntity<Ventas> elimiarUsuario(@PathVariable Integer id) {
+    public ResponseEntity<Ventas> elimiarVentas(@PathVariable Integer id) {
         ventService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
