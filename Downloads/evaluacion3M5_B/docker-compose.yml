@@ -1,0 +1,23 @@
+version: "3"
+services:
+  app:
+    image: eddybelduma/spring-mongo:1.2
+    networks:
+      - net-cloud
+    container_name: spring-container
+    depends_on:
+      - mongodb_container
+    ports:
+      - 8080:8080
+    links:
+    - mongodb_container
+  mongodb_container:
+    image: mongo:latest
+    networks:
+      - net-cloud
+    container_name: mongodb_container
+    ports:
+      - 27017:27017
+      
+networks:
+  net-cloud:
