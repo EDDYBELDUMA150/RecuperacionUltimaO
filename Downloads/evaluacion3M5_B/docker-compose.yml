@@ -1,23 +1,30 @@
 version: "3"
 services:
-  app:
-    image: eddybelduma/spring-mongo:1.0
+  api-spring:
+    image: eddybelduma/spring-mongo:1.2
+    build: .
     networks:
       - net-cloud
-    container_name: spring-container
+    container_name: spring_mongo
     depends_on:
-      - mongodb_container
+      - mongo_container
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo_container/usuarios_bd
     ports:
-      - 8080:8080
-    links:
-    - mongodb_container
-  mongodb_container:
+      - 8082:8080
+    privileged: true
+  mongo_container:
     image: mongo:latest
     networks:
       - net-cloud
-    container_name: mongodb_container
+    container_name: mongo_container
     ports:
-      - 27017:27017
-      
+      - 2023:27017
+    environment:
+      - MONGO_INITDB_DATABASE=usuarios_bd
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+
 networks:
   net-cloud:
+    driver: bridge
