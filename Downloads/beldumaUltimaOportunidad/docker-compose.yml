@@ -1,0 +1,30 @@
+version: "3"
+services:
+  api-spring:
+    image: eddybelduma/mongo_recu
+    build: .
+    networks:
+      - net-cloud
+    container_name: mongo_recu
+    depends_on:
+      - mongo_container
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo_container/examenrecu
+    ports:
+      - 8082:8080
+    privileged: true
+  mongo_container:
+    image: mongo:latest
+    networks:
+      - net-cloud
+    container_name: mongo_container
+    ports:
+      - 1989:27017
+    environment:
+      - MONGO_INITDB_DATABASE=examenrecu
+      - MONGO_INITDB_ROOT_USERNAME=
+      - MONGO_INITDB_ROOT_PASSWORD=
+
+networks:
+  net-cloud:
+    driver: bridge
